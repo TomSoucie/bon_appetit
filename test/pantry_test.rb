@@ -1,4 +1,5 @@
 require './lib/pantry'
+require './lib/recipe'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'pry'
@@ -37,6 +38,31 @@ class PantryTest < Minitest::Test
     
     p.restock("Cheese", 20)
     assert_equal 30, p.stock_check("Cheese")
+  end
+
+  def test_recipe_is_accessible
+    r = Recipe.new("Cheese Pizza")
+    r.add_ingredient("Cheese", 20)
+    r.add_ingredient("Flour", 20)
+    
+    expected = {"Cheese" => 20, "Flour" => 20}
+    actual = r.ingredients
+
+    assert_equal expected, actual
+  end
+
+  def test_pantry_can_add_shopping_list_based_on_recipe
+    p = Pantry.new
+
+    r = Recipe.new("Cheese Pizza")
+    r.add_ingredient("Cheese", 20)
+    r.add_ingredient("Flour", 20)
+    # binding.pry
+    p.add_to_shopping_list(r)
+    actual = p.shopping_list
+    expected = {"Cheese" => 20, "Flour" => 20}
+    assert_equal expected, actual
+
   end    
 
 end
