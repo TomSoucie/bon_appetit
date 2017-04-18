@@ -1,4 +1,5 @@
 require './lib/recipe'
+
 class Pantry
   attr_reader   :shopping_list
   attr_accessor :stock
@@ -17,7 +18,7 @@ class Pantry
     end 
 
     def restock(food, quantity)
-      if @stock.has_key?(food)
+      if stock.has_key?(food)
         @stock[food] += quantity
       else
         @stock[food] = quantity
@@ -26,7 +27,7 @@ class Pantry
 
     def add_to_shopping_list(recipe)
       recipe.ingredients.each_pair do |k, v|
-        if @shopping_list.has_key?(k)
+        if shopping_list.has_key?(k)
           @shopping_list[k] += v
         else
           @shopping_list[k] = v

@@ -5,6 +5,7 @@ require 'minitest/pride'
 require 'pry'
 
 class PantryTest < Minitest::Test
+  
   def test_object_is_a_pantry
     p = Pantry.new
 
@@ -23,13 +24,13 @@ class PantryTest < Minitest::Test
     assert p.stock.is_a?(Hash)
   end
 
-  def test_pantry_stock_can_be_checked
+  def test_new_pantry_stock_can_be_checked
     p = Pantry.new
 
     assert_equal 0, p.stock_check("Cheese")
   end
 
-  def test_pantry_can_be_restocked 
+  def test_pantry_can_be_restocked
     p = Pantry.new
     assert_equal 0, p.stock_check("Cheese")
 
@@ -109,7 +110,7 @@ class PantryTest < Minitest::Test
     p.add_to_shopping_list(another_r)
 
     p.print_shopping_list
-    binding.pry
+    
     #manually verify output on terminal screen
   end    
 
