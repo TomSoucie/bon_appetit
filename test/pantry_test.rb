@@ -31,7 +31,7 @@ class PantryTest < Minitest::Test
   def test_pantry_can_be_restocked 
     p = Pantry.new
     assert_equal 0, p.stock_check("Cheese")
-    # binding.pry
+
     p.restock("Cheese", 10)
     assert_equal 10, p.stock_check("Cheese")
     
