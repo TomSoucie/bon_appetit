@@ -4,8 +4,17 @@ require 'minitest/pride'
 require 'pry'
 
 class RecipeTest < Minitest::Test
+  def test_object_starts_as_a_blank_recipe
+    r = Recipe.new("Cheese Pizza")
+    
+    assert_instance_of Recipe, r
+
+    assert r.ingredients.empty?
+  end
+  
   def test_it_has_a_name
     r = Recipe.new("Cheese Pizza")
+    
     assert_equal "Cheese Pizza", r.name
   end
 
@@ -13,6 +22,7 @@ class RecipeTest < Minitest::Test
     r = Recipe.new("Cheese Pizza")
     r.add_ingredient("Flour", 500) # 500 "UNIVERSAL UNITS"
     assert_equal ["Flour"], r.ingredient_types
+    
     r.add_ingredient("Cheese", 1500)
     assert_equal ["Flour", "Cheese"], r.ingredient_types
   end
