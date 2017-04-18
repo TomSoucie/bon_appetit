@@ -8,4 +8,16 @@ class PantryTest < Minitest::Test
 
     assert_instance_of Pantry, p
   end
+
+  def test_pantry_stock_is_initailized_empty
+    p = Pantry.new
+
+    assert p.stock.empty?
+  end
+
+  def test_pantry_stock_is_initialized_a_hash
+    p = Pantry.new
+
+    assert p.stock.is_a?(Hash)
+  end
 end
