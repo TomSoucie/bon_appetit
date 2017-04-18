@@ -33,4 +33,12 @@ class Pantry
         end
       end
     end
+
+    def print_shopping_list
+      shopping_list.each_pair do |k, v|
+        puts "* #{k}: #{v}"
+      end
+    end
+
+
 end

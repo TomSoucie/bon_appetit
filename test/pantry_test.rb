@@ -57,12 +57,59 @@ class PantryTest < Minitest::Test
     r = Recipe.new("Cheese Pizza")
     r.add_ingredient("Cheese", 20)
     r.add_ingredient("Flour", 20)
-    # binding.pry
+
+    p.add_to_shopping_list(r)
+    actual = p.shopping_list
+    expected = {"Cheese" => 20, "Flour" => 20}
+    assert_equal expected, actual
+  end
+
+  def pantry_can_add_list_for_multiple_recipes
+    p = Pantry.new
+
+    r = Recipe.new("Cheese Pizza")
+    r.add_ingredient("Cheese", 20)
+    r.add_ingredient("Flour", 20)
+
     p.add_to_shopping_list(r)
     actual = p.shopping_list
     expected = {"Cheese" => 20, "Flour" => 20}
     assert_equal expected, actual
 
+    another_r = Recipe.new("Spaghetti")
+    another_r.add_ingredient("Noodles", 10)
+    another_r.add_ingredient("Sauce", 10)
+    another_r.add_ingredient("Cheese", 5)
+    
+    p.add_to_shopping_list(another_r)
+
+    actual = p.shopping_list
+    expected = {"Cheese" => 25, "Flour" => 20, "Noodles" => 10, "Sauce" => 10}
+
+    assert_equal expected, actual
+  end
+
+  def test_list_can_be_printed
+    p = Pantry.new
+
+    r = Recipe.new("Cheese Pizza")
+    r.add_ingredient("Cheese", 20)
+    r.add_ingredient("Flour", 20)
+
+    p.add_to_shopping_list(r)
+    actual = p.shopping_list
+    expected = {"Cheese" => 20, "Flour" => 20}
+    assert_equal expected, actual
+
+    another_r = Recipe.new("Spaghetti")
+    another_r.add_ingredient("Noodles", 10)
+    another_r.add_ingredient("Sauce", 10)
+    another_r.add_ingredient("Cheese", 5)
+    
+    p.add_to_shopping_list(another_r)
+
+    p.print_shopping_list
+    #manually verify output on terminal screen
   end    
 
 end
