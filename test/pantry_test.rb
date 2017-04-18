@@ -9,7 +9,7 @@ class PantryTest < Minitest::Test
     assert_instance_of Pantry, p
   end
 
-  def test_pantry_stock_is_initailized_empty
+  def test_pantry_stock_is_initialized_empty
     p = Pantry.new
 
     assert p.stock.empty?
@@ -19,5 +19,11 @@ class PantryTest < Minitest::Test
     p = Pantry.new
 
     assert p.stock.is_a?(Hash)
+  end
+
+  def test_pantry_stock_can_be_checked
+    p = Pantry.new
+
+    assert_equal 0, p.stock_check("Cheese")
   end
 end
