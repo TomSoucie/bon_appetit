@@ -1,5 +1,5 @@
 class Pantry
-  attr_reader :stock
+  attr_accessor :stock
 
     def initialize
       @stock = {}
@@ -7,10 +7,17 @@ class Pantry
     
     def stock_check(food)
       if @stock.has_key?(food)
-        @stock[food].count
+        @stock[food]
       else
         0
       end
     end 
 
+    def restock(food, quantity)
+      if @stock.has_key?(food)
+        @stock[food] += quantity
+      else
+        @stock[food] = quantity
+      end
+    end
 end
