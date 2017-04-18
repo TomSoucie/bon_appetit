@@ -109,6 +109,7 @@ class PantryTest < Minitest::Test
     p.add_to_shopping_list(another_r)
 
     p.print_shopping_list
+    binding.pry
     #manually verify output on terminal screen
   end    
 
